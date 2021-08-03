@@ -39,7 +39,7 @@ function Form() {
     const { email, password } = credentials;
     const res = await signIn(email, password);
 
-    if (res === true) history.push("/home");
+    // if (res === true) history.push("/home");
 
     setSignUpResponse(res);
   };
@@ -77,7 +77,7 @@ function Form() {
             </StyledText>
           </Box>
 
-          <Box mt="10px" mb="6px">
+          <Box mt="10px" mb="6px" textAlign="left">
             {signUpResponse && <Text color="red">{signUpResponse}</Text>}{" "}
           </Box>
 

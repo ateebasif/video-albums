@@ -76,7 +76,7 @@ function Form() {
             </StyledText>
           </Box>
 
-          <Box mt="10px" mb="6px">
+          <Box mt="10px" mb="6px" textAlign="left">
             {signUpResponse && <Text color="red">{signUpResponse}</Text>}{" "}
           </Box>
 
