@@ -6,7 +6,7 @@ import { UserContext } from "utils/contexts/userContext";
 
 function PrivateRoute(props) {
   const { component: Component, restricted, ...restProps } = props || {};
-  const { user, loading } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <Route
@@ -25,9 +25,3 @@ function PrivateRoute(props) {
 }
 
 export default PrivateRoute;
-
-{
-  /* <PrivateLayout>
-  <Component {...params} />
-</PrivateLayout>; */
-}
