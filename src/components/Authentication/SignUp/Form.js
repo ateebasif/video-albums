@@ -38,7 +38,7 @@ function Form() {
     const { email, password } = credentials;
     const res = await CreateUser(email, password);
 
-    if (res === true) history.push("/home");
+    // if (res === true) history.push("/home");
 
     setSignUpResponse(res);
   };

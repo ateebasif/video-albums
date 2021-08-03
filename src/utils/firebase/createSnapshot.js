@@ -2,19 +2,23 @@ import firebase from "./firebase";
 
 const firestore = firebase.firestore();
 
-const createSnapshot = async (code, user, collectionName) => {
-  if (!code && !user && !collectionName) return null;
+const createSnapshot = async (data, collectionName) => {
+  if (!data && !collectionName) return null;
 
   const snapShotRef = firestore.collection(collectionName);
-  const { uid } = user;
-  await snapShotRef
+  const res = await snapShotRef
     .doc()
-    .set({
-      code: code,
-      createdBy: uid,
+    .set(data)
+    .then(() => {
+      console.log("snapshot created");
+      return true;
     })
-    .then(() => console.log("snapshot created"))
-    .catch((err) => console.log("error in creating snapshot", err));
+    .catch((err) => {
+      console.log("error in creating snapshot", err);
+      return err;
+    });
+
+  return res;
 };
 
 export default createSnapshot;

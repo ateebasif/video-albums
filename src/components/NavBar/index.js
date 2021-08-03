@@ -1,17 +1,9 @@
 import React from "react";
-import useRedirect from "hooks/redirect";
-import { signOut } from "utils/firebase/loginLogout";
+
+import Nav from "./NavBar";
 
 function Navbar() {
-  let history = useRedirect();
-
-  return (
-    <div>
-      <button onClick={() => history.push("/home")}>Home</button>
-      <button onClick={() => history.push("/about")}>About</button>
-      <button onClick={() => signOut()}>Signout</button>
-    </div>
-  );
+  return <Nav />;
 }
 
 export default Navbar;
