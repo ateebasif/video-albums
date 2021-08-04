@@ -1,12 +1,11 @@
 import React from "react";
 
 import AlbumsPage from "components/Albums";
-import getAlbums from "hooks/getAlbums";
-
+import useAlbumsGet from "hooks/useAlbumsGet";
 import CreateAlbum from "./CreateAlbum";
 
 function Album() {
-  const docs = getAlbums();
+  const docs = useAlbumsGet();
 
   return <AlbumsPage albums={docs} creatView={CreateAlbum} />;
 }

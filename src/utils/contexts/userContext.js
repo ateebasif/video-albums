@@ -10,7 +10,7 @@ function AuthProvider({ children }) {
   useEffect(() => {
     const ubsubscribe = () => {
       firebase.auth().onAuthStateChanged((user) => {
-        console.log("user", user);
+        // console.log("user", user);
         if (user) setUser(user);
         else setUser(null);
         setLoading(false);

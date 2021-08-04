@@ -19,7 +19,7 @@ import firebase from "utils/firebase/firebase";
 import { StyledButton } from "../styles";
 
 function CreateAlbumForm(props) {
-  const { createAlbum } = props;
+  const { createAlbum, onClose } = props;
   const [albumName, setAlbumName] = useState("");
   const [file, setFile] = useState(null);
   const [previewSrc, setpreviewSrc] = useState(defaultCoverUrl);
@@ -62,7 +62,10 @@ function CreateAlbumForm(props) {
     console.log("payLoad", payLoad);
     const res = await createAlbum(payLoad, collectionName);
 
-    if (res) setLoading(false);
+    if (res) {
+      setLoading(false);
+      onClose();
+    }
   };
 
   const handleOnRemoveCover = () => {
@@ -179,5 +182,6 @@ function CreateAlbumForm(props) {
 
 CreateAlbumForm.propTypes = {
   createAlbum: PropTypes.func,
+  onClose: PropTypes.func,
 };
 export default CreateAlbumForm;
