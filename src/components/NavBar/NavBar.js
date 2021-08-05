@@ -9,7 +9,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuDivider,
+  // MenuDivider,
   useDisclosure,
   useColorModeValue,
   Stack,
@@ -62,14 +62,13 @@ export default function Simple() {
           />
 
           <HStack spacing={8} alignItems={"center"}>
-            <Box>Logo</Box>
+            <Box></Box>
             <HStack
               as={"nav"}
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
               <NavLink url="/albums">Albums</NavLink>
-              <NavLink url="/about">About</NavLink>
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>

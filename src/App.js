@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Login from "containers/Login";
 import SignUp from "containers/SignUp";
-import Home from "containers/Home";
+// import Home from "containers/Home";
 import About from "containers/About";
 import Albums from "containers/Albums";
 import AlbumView from "containers/AlbumView";
+import NotFound from "components/NotFound";
 
 import { UserContext } from "utils/contexts/userContext";
 import PrivateRoute from "routes/Private";
@@ -27,6 +28,7 @@ function App() {
             <PrivateRoute component={Albums} path="/albums" exact />
             <PrivateRoute component={AlbumView} path="/album/:name" exact />
             <PrivateRoute component={About} path="/about" exact />
+            <Route component={NotFound} />
           </Switch>
         )}
       </Router>

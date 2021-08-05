@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import _get from "lodash/get";
-
 import {
   FormControl,
   FormLabel,
   Input,
-  Button,
   Box,
-  Text,
   Icon,
   Spinner,
   Progress,
 } from "@chakra-ui/react";
-import { BsImage } from "react-icons/bs";
 import { RiVideoLine } from "react-icons/ri";
+
 import firebase from "utils/firebase/firebase";
 
 import { StyledButton } from "./styles";
@@ -25,11 +22,12 @@ function VideoForm(props) {
 
   const [fileUrl, setFileUrl] = useState(null);
   const [fileName, setFileName] = useState(null);
-  const [fileDisplayName, setFileDisplayName] = useState(null);
+  const [fileDisplayName, setFileDisplayName] = useState("");
 
   const [progressValue, setprogressValue] = useState(false);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const [uploadComplete, setUploadComplete] = useState(false);
+  const [notVideo, setNotVideo] = useState(false);
 
   const handleOnChange = (e) => {
     const targetInputValue = _get(e, "target.value", "");
@@ -39,13 +37,22 @@ function VideoForm(props) {
   const handleFileChange = (e) => {
     const file = _get(e, "target.files[0]", {});
     setFileUrl(file);
-    setFileName(file.name);
+    setFileName(_get(file, "name", ""));
+    if (
+      _get(file, "name", "").includes(".mp4") ||
+      _get(file, "name", "").includes(".mkv")
+    ) {
+      setNotVideo(false);
+    } else {
+      setNotVideo(true);
+    }
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     if (!fileUrl && !fileName) return null;
+    if (notVideo) return null;
     setIsFileUploaded(true);
     setUploadComplete(false);
     const metaDate = {
@@ -58,13 +65,23 @@ function VideoForm(props) {
 
     await uploadVideo(
       uploadTask,
-      setprogressValue,
       album,
       fileDisplayName,
-      setIsFileUploaded,
-      setUploadComplete
+      resetValues,
+      getUploadProgressValue
     );
   };
+
+  const resetValues = () => {
+    setFileName(null);
+    setIsFileUploaded(false);
+    setprogressValue(0);
+    setUploadComplete(true);
+    setFileDisplayName("");
+  };
+
+  const getUploadProgressValue = (progressValue) =>
+    setprogressValue(progressValue);
 
   return (
     <div>
@@ -76,6 +93,7 @@ function VideoForm(props) {
             type="text"
             placeholder="Video Name"
             onChange={handleOnChange}
+            value={fileDisplayName}
           />
         </FormControl>
 
@@ -93,6 +111,14 @@ function VideoForm(props) {
             Upload Successfull!
           </Box>
         )}
+
+        {notVideo && (
+          <Box mt="5" color="red">
+            Please Select a video File!
+          </Box>
+        )}
+
+        {fileName && <Box mt="5">Selected Video "{fileName}"</Box>}
 
         {/* Buttons box */}
         <Box display="flex" alignItems="center">
@@ -125,6 +151,7 @@ function VideoForm(props) {
             onChange={handleFileChange}
             id="file-upload"
             display="none"
+            accept="video/mp4,video/*,.mkv"
           />
 
           <Box mt="5">

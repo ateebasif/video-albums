@@ -16,9 +16,9 @@ function Login() {
       <Container>
         <ContentContainer>
           <TextContainer>
-            <HeadingContainer>Fan Crowd</HeadingContainer>
+            <HeadingContainer>Video Lessons</HeadingContainer>
             <Text textAlign="left" fontSize="20px">
-              Connect with <br /> sports fan <br /> around you <br />
+              Find the <br /> content you <br /> want to learn <br />
             </Text>
           </TextContainer>
           <FormContainer>

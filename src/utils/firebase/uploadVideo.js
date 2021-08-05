@@ -4,18 +4,16 @@ import { auth } from "./firebase";
 
 export const uploadVideo = async (
   uploadTask,
-  setprogressValue,
   album,
   fileDisplayName,
-  setIsFileUploaded,
-  setUploadComplete
+  resetValues,
+  getUploadProgressValue
 ) => {
   const uploadRes = await uploadTask.on(
     "state_changed",
     (snapshot) => {
       var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
-      setprogressValue(Math.ceil(progress));
+      getUploadProgressValue(Math.ceil(progress));
     },
     (error) => {
       // Handle unsuccessful uploads
@@ -34,9 +32,8 @@ export const uploadVideo = async (
         };
 
         await createVideoDoc(videoDocData, "videos");
-        setIsFileUploaded(false);
-        setprogressValue(0);
-        setUploadComplete(true);
+
+        resetValues();
       });
     }
   );

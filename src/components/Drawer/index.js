@@ -7,8 +7,6 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  Button,
-  Flex,
 } from "@chakra-ui/react";
 
 function ConfigDrawer(props) {
