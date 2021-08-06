@@ -1,4 +1,4 @@
-#Video Album App
+## Video Album App
 
 ### Built with React, Firebase, Chakra-UI
 
@@ -7,6 +7,11 @@ Live Demo https://albums-22e42.web.app/login
 you can create albums and also add cover photos to albums and then go to an
 album and upload videos that will show in list and you can play those videos from
 the play list.
+you can also update profile picture.
+
+### To start
+
+just change the firebase configs in utils/firebase/firebase or add a .env file and strt the project by npm start
 
 ## Getting Started with Create React App
 
