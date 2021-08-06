@@ -16,9 +16,9 @@ function Login() {
       <Container>
         <ContentContainer>
           <TextContainer>
-            <HeadingContainer>Video Lessons</HeadingContainer>
+            <HeadingContainer>Video Albums</HeadingContainer>
             <Text textAlign="left" fontSize="20px">
-              Find the <br /> content you <br /> want to learn <br />
+              Store the <br /> memories that <br /> matters to you. <br />
             </Text>
           </TextContainer>
           <FormContainer>

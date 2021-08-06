@@ -1,3 +1,5 @@
+import React from "react";
+import _get from "lodash/get";
 import {
   Box,
   Flex,
@@ -19,6 +21,7 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
 import Redirect from "hooks/redirect";
 import { signOut } from "utils/firebase/loginLogout";
+import useGetUserProfile from "hooks/useGetUserProfile";
 
 const Links = ["Dashboard", "Projects", "Team"];
 
@@ -46,8 +49,11 @@ const NavLink = ({ url, children }) => {
 
 export default function Simple() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const history = Redirect();
+  const { user } = useGetUserProfile();
 
   const onSignOut = () => signOut();
+  const OnSettings = () => history.push("/settings");
 
   return (
     <>
@@ -80,14 +86,10 @@ export default function Simple() {
                 cursor={"pointer"}
                 minW={0}
               >
-                <Avatar
-                  size={"sm"}
-                  src={
-                    "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                  }
-                />
+                <Avatar size={"sm"} src={_get(user[0], "profilePhoto", "")} />
               </MenuButton>
               <MenuList>
+                <MenuItem onClick={OnSettings}>Settings</MenuItem>
                 <MenuItem onClick={onSignOut}>Signout</MenuItem>
                 {/* <MenuItem>Link 1</MenuItem>
                 <MenuDivider />
