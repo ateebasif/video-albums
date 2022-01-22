@@ -9,6 +9,12 @@ album and upload videos that will show in list and you can play those videos fro
 the play list.
 you can also update profile picture.
 
+## Try Logging in using
+email: guest@gmail.com 
+password: 123456 
+
+# (or just sign-up)
+
 ### To start
 
 just change the firebase configs in utils/firebase/firebase or add a .env file and strt the project by npm start
